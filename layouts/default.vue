@@ -14,9 +14,7 @@
         </main>
 
         <!-- Exemple de pied de page global -->
-        <footer>
-            <p>&copy; 2024 Mon Application</p>
-        </footer>
+        <layout-footer></layout-footer>
 
     </div>
 
