@@ -2,13 +2,7 @@
 
     <div>
 
-        <!-- Menu universel -->
-        <nav>
-            <ul>
-                <li><a href="/">Accueil</a></li>
-                <li><a href="/about">À propos</a></li>
-            </ul>
-        </nav>
+        <layout-nav-bar></layout-nav-bar>
 
         <!-- Exemple d’en-tête global -->
         <header>
