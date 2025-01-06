@@ -1,2 +1,22 @@
 @import "bootstrap/dist/css/bootstrap.min.css";
 @import "bootstrap-icons/font/bootstrap-icons.css";
+
+/* code couleur */
+
+.blue-background {
+    background-color: #2575fc;
+}
+
+.blue-text {
+  color: #2575fc;
+}
+
+.violet-text {
+  color: #6a11cb;
+}
+
+.pink-text {
+  color: #ff0080;
+}
+
+/* fin code couleur */

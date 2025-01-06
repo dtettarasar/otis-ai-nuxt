@@ -6,6 +6,10 @@
 
         <generic-intro></generic-intro>
 
+        <hr class="solid mt-5">
+
+        <generic-teasing></generic-teasing>
+
     </div>
 
 </template>
