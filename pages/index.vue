@@ -8,6 +8,10 @@
 
         <hr class="solid mt-5">
 
+        <generic-how-to-use></generic-how-to-use>
+
+        <hr class="solid mt-5">
+
         <generic-teasing></generic-teasing>
 
     </div>
