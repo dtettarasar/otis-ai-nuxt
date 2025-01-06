@@ -1,18 +1,24 @@
 <template>
-    <generic-home-banner></generic-home-banner>
 
-    <div class="container">
+    <div>
 
-        <generic-intro></generic-intro>
+        <generic-home-banner></generic-home-banner>
 
-        <hr class="solid mt-5">
+        <div class="container">
 
-        <generic-how-to-use></generic-how-to-use>
+            <generic-intro></generic-intro>
 
-        <hr class="solid mt-5">
+            <hr class="solid mt-5">
 
-        <generic-teasing></generic-teasing>
+            <generic-how-to-use></generic-how-to-use>
+
+            <hr class="solid mt-5">
+
+            <generic-teasing></generic-teasing>
+
+        </div>
 
     </div>
+
 
 </template>
