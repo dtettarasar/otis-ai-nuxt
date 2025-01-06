@@ -1,3 +1,7 @@
 <template>
-    <h2>This is the register page component</h2>
+
+    <div>
+        <generic-page-banner title="Your adventure starts here." iconClass="bi-person-fill-add"></generic-page-banner>
+    </div>
+    
 </template>
