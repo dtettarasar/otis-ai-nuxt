@@ -1,3 +1,7 @@
+<script setup>
+
+</script>
+
 <template>
 
     <div>
@@ -7,6 +11,7 @@
 
             <div>
                 <h2>Access your dashboard</h2>
+                <forms-login-form></forms-login-form>
             </div>
 
         </div>
@@ -14,3 +19,12 @@
     
 
 </template>
+
+<style>
+
+    .form-label,
+    .btn {
+        font-size: 1.3rem;
+    }
+
+</style>
