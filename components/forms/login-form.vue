@@ -16,11 +16,44 @@ const togglePassword = () => {
     showPassword.value = !showPassword.value;
 };
 
-const submitForm = () => {
+const submitForm = async () => {
 
     console.log('init login process');
     console.log('values');
     console.log(user);
+
+    try {
+
+        const response = await $fetch('/api/login-user', {
+            method: 'POST',
+            body: {
+                username: user.value.name,
+                password: user.value.pwd,
+            },
+        });
+
+        console.log("Backend response:", response);
+
+        if (response.success) {
+
+            showSuccess.value = true;
+            hideSubmitBtn.value = true;
+            showError.value = false;
+
+        } else {
+
+            showError.value = true;
+            showSuccess.value = false;
+
+        }
+
+    } catch(err) {
+
+        console.error(err);
+        showError.value = true;
+        showSuccess.value = false;
+
+    }
 
 
 }
