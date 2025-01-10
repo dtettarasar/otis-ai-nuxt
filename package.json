@@ -2,12 +2,15 @@
   "name": "nuxt-app",
   "private": true,
   "type": "module",
+  "main": ".output/server/index.mjs",
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "start": "node .output/server/index.mjs",
+    "prestart": "nuxt prepare"
   },
   "dependencies": {
     "bootstrap": "^5.3.3",
