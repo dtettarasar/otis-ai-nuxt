@@ -30,7 +30,7 @@
                         <div class="p-2 col-md-12 col-sm-12">
 
                             <!--<VideoPlayer :autoplay="true" :loop="true" :src="'/videos/otis_tutorial_part_1.mp4'" type="video/mp4" />-->
-                            <generic-video-player :autoplay="true" :loop="true" :src="'/videos/otis_tutorial_part_1.mp4'" type="video/mp4" ></generic-video-player>
+                            <!--<generic-video-player :autoplay="true" :loop="true" :src="'/videos/otis_tutorial_part_1.mp4'" type="video/mp4" ></generic-video-player>-->
 
                         </div>
 
@@ -57,7 +57,7 @@
                         <div class="p-2 col-md-12 col-sm-12">
 
                             <!--<VideoPlayer :autoplay="true" :loop="true" :src="'/videos/otis_tutorial_part_2.mp4'" type="video/mp4" />-->
-                            <generic-video-player :autoplay="true" :loop="true" :src="'/videos/otis_tutorial_part_2.mp4'" type="video/mp4" ></generic-video-player>
+                            <!--<generic-video-player :autoplay="true" :loop="true" :src="'/videos/otis_tutorial_part_2.mp4'" type="video/mp4" ></generic-video-player>-->
 
                         </div>
 
