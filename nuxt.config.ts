@@ -12,4 +12,9 @@ export default defineNuxtConfig({
   plugins: [
     { src: '~/plugins/bootstrap.js', mode: 'client' }
   ],
+
+  nitro: {
+    preset: 'node-server'
+  }
+  
 })
