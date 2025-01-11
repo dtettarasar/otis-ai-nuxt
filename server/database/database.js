@@ -23,7 +23,7 @@ export async function initDB() {
 
 export async function closeDB() {
     try {
-        await mongoose.disconnect();let initCalled = false;
+        await mongoose.disconnect();
         isConnected = false;
         console.log('MongoDB connection closed.');
     } catch (error) {
