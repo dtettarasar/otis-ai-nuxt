@@ -1,0 +1,1 @@
+const dataBase = require('../../../server/database/database');
