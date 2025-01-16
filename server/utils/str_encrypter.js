@@ -1,6 +1,10 @@
 const crypto = require('crypto');
+// .env var to configure through runtimeConfig
 const env = require('dotenv').config();
+const secretKey = process.env.ENCRYPTION_KEY;
+const encryptionAlgo = 'aes-256-cbc';
 
+/*
 const strEncrypter = {
 
     secretKey: process.env.ENCRYPTION_KEY,
@@ -61,6 +65,20 @@ const strEncrypter = {
 
     }
 
+}*/
+
+
+
+const encryptString = async (strToEncrypt) => {
+
+    console.log('init encryptString method');
+
 }
 
-exports.method = strEncrypter;
+const decryptString = async (encryptionObj) => {
+    
+    console.log('init decryptString method');
+
+}
+
+module.exports = { encryptString, decryptString };
