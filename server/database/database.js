@@ -6,6 +6,10 @@ const config = useRuntimeConfig();
 
 export async function initDB() {
 
+    console.log('start initDB function');
+    console.log('MongoDB url: ');
+    console.log(config.mongoUri);
+
     if (isConnected) {
         console.log('MongoDB is already connected.');
         return;

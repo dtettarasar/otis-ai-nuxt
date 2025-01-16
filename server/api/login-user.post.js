@@ -1,10 +1,6 @@
 // server/api/login-user.post.js
 export default defineEventHandler(async (event) => {
 
-    // Mongo db config
-    const config = useRuntimeConfig();
-    console.log(config.mongoUri); // Accès côté serveur
-
     // Récupérer les données envoyées dans la requête
     const body = await readBody(event);
   
