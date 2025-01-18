@@ -19,6 +19,7 @@ export async function initDB() {
         const connection = await mongoose.connect(process.env.DB_URL);
         isConnected = connection.connections[0].readyState;
         console.log('Connected to MongoDB');
+        return connection;
     } catch (error) {
         console.error('Error connecting to MongoDB:', error);
         throw error;
