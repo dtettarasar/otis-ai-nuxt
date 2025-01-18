@@ -1,6 +1,6 @@
-const crypto = require('crypto');
-const config = useRuntimeConfig();
-const encryptionAlgo = 'aes-256-cbc';
+//const crypto = require('crypto');
+// const config = useRuntimeConfig();
+//const encryptionAlgo = 'aes-256-cbc';
 
 /*
 const strEncrypter = {
@@ -70,7 +70,39 @@ const strEncrypter = {
 const encryptString = async (strToEncrypt) => {
 
     console.log('init encryptString method');
-    console.log('encryptionKey: ' + config.encryptionKey);
+    console.log('encryptionKey: ' + process.env.ENCRYPTION_KEY);
+
+    /*
+
+    const secretKey = process.env.ENCRYPTION_KEY;
+
+    const encryptionAlgo = 'aes-256-cbc';
+
+    try {
+
+        const iv = crypto.randomBytes(16);
+
+        const encryptionObj = {
+            iv: iv.toString('hex'),
+            encryptedStr: null
+        }
+
+        let cypher = crypto.createCipheriv(encryptionAlgo, secretKey, iv);
+        encryptionObj.encryptedStr = cypher.update(strToEncrypt, 'utf-8', 'hex');
+        encryptionObj.encryptedStr += cypher.final('hex');
+
+        //this.decryptString(encryptionObj);
+
+        return encryptionObj;
+
+    } catch (err) {
+
+        console.error(err);
+        return false;
+
+    }
+
+    */
 
 }
 
