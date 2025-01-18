@@ -65,14 +65,18 @@ const strEncrypter = {
 
 }*/
 
+let crypto;
 
+try {
+  crypto = await import('node:crypto');
+} catch (err) {
+  console.error('crypto support is disabled!');
+} 
 
 const encryptString = async (strToEncrypt) => {
 
     console.log('init encryptString method');
     console.log('encryptionKey: ' + process.env.ENCRYPTION_KEY);
-
-    /*
 
     const secretKey = process.env.ENCRYPTION_KEY;
 
@@ -102,7 +106,6 @@ const encryptString = async (strToEncrypt) => {
 
     }
 
-    */
 
 }
 

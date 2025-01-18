@@ -2,7 +2,6 @@ import { expect, test } from 'vitest';
 import { initDB, closeDB } from '../../../server/database/database.js';
 
 import dotenv from 'dotenv';
-
 dotenv.config(); // Charger les variables d'environnement
 
 let dbConnection;
