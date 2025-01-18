@@ -30,3 +30,18 @@ test('test the object returned by the encrypter', async () => {
     expect(testEncryption.encryptedStr).toMatch(encryptedStrRegex);
 
 });
+
+test('test the decrypter', async () => {
+
+    const decryptedStr = await decryptString(testEncryption);
+
+    
+    console.log("testEncryption: ");
+    console.log(testEncryption);
+    console.log("decryptedStr: ");
+    console.log(decryptedStr);
+    
+
+    expect(decryptedStr).toEqual(testStr);
+
+});
