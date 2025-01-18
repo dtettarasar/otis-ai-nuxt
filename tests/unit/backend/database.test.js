@@ -17,7 +17,7 @@ afterAll(async () => {
     await closeDB();
 });
 
-test('test connexion to MongoDB', async () => {
+test('test connection to MongoDB', async () => {
  
     await expect(dbConnection).toBeDefined();
     await expect(dbConnection.connection.client).toBeDefined();
