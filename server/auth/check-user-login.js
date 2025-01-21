@@ -1,5 +1,6 @@
 import {findUserByName, getUserPsw} from '../controllers/user-controller';
 import {checkHash} from '../utils/str_hasher';
+import { encryptString } from '../utils/str_encrypter';
 
 const checkUserLogin = async (usernameToCheck, passwordToCheck) => {
 
@@ -28,10 +29,26 @@ const checkUserLogin = async (usernameToCheck, passwordToCheck) => {
         console.log(userToCheckAuth);
 
         const hashObj = await getUserPsw(userToCheckAuth._id);
-        console.log(hashObj);
+        // console.log(hashObj);
 
         const hashResult = await checkHash(passwordToCheck, hashObj.password);
-        console.log('hashResult: ' + hashResult);
+        // console.log('hashResult: ' + hashResult);
+
+        if (!hashResult) {
+
+            console.log('Error: invalid password');
+
+        } else {
+
+            console.log('Password is valid, auth OK');
+            userLoginData.authSuccess = true;
+
+            // make an encrypted version of the id that will be passed to the token before its creation
+            userLoginData.userIdEncryption = await encryptString(userToCheckAuth._id.toHexString());
+
+        }
+
+        console.log(userLoginData);
 
     }
 

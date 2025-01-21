@@ -1,15 +1,8 @@
-let crypto;
-
-try {
-  crypto = await import('node:crypto');
-} catch (err) {
-  console.error('crypto support is disabled!');
-} 
-
+import crypto from 'node:crypto';
 // const secretKey = process.env.ENCRYPTION_KEY;
 // const encryptionAlgo = 'aes-256-cbc';
 
-const encryptString = async (strToEncrypt) => {
+export const encryptString = async (strToEncrypt) => {
 
     // console.log('init encryptString method');
     // console.log('encryptionKey: ' + process.env.ENCRYPTION_KEY);
@@ -44,7 +37,7 @@ const encryptString = async (strToEncrypt) => {
 
 }
 
-const decryptString = async (encryptionObj) => {
+export const decryptString = async (encryptionObj) => {
     
     // console.log('init decryptString method');
 
@@ -70,5 +63,3 @@ const decryptString = async (encryptionObj) => {
     }
 
 }
-
-module.exports = { encryptString, decryptString };
