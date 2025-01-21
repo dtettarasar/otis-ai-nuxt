@@ -1,4 +1,7 @@
 // server/api/login-user.post.js
+
+import checkUserLogin from '../auth/check-user-login';
+
 export default defineEventHandler(async (event) => {
 
     // Récupérer les données envoyées dans la requête
@@ -8,6 +11,8 @@ export default defineEventHandler(async (event) => {
     console.log("received post request from login form");
     console.log("Username:", body.username);
     console.log("Password:", body.password);
+
+    await checkUserLogin(body.username, body.password);
   
     // Retourner une réponse
     return {
