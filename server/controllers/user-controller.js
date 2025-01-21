@@ -1,6 +1,6 @@
 import User from '../database/models/user'
 
-const findUserByName = async (userName) => {
+export const findUserByName = async (userName) => {
     try {
         const query = User.find({ username: userName }).select('username');
         return await query.exec();
@@ -10,7 +10,7 @@ const findUserByName = async (userName) => {
     }
 };
 
-const findUserByEmail = async (userEmail) => {
+export const findUserByEmail = async (userEmail) => {
     try {
         const query = User.find({ email: userEmail }).select('email');
         return await query.exec();
@@ -20,7 +20,7 @@ const findUserByEmail = async (userEmail) => {
     }
 };
 
-const getUserPsw = async (userID) => {
+export const getUserPsw = async (userID) => {
     try {
         const query = User.findById(userID).select('_id password');
         return await query.exec();
@@ -29,5 +29,3 @@ const getUserPsw = async (userID) => {
         return null;
     }
 };
-
-module.exports = { findUserByName, findUserByEmail, getUserPsw };
