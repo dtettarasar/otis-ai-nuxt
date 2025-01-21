@@ -7,13 +7,11 @@ const checkUserLogin = async (usernameToCheck, passwordToCheck) => {
     const userLoginData = {
         authSuccess: false,
         userIdEncryption: {},
-        usernameToCheck: usernameToCheck,
-        passwordToCheck: passwordToCheck,
     }
 
-    console.log('init checkUserLogin function');
-    console.log('userLoginData: ');
-    console.log(userLoginData);
+    // console.log('init checkUserLogin function');
+    // console.log('userLoginData: ');
+    // console.log(userLoginData);
 
     const usernameInDB = await findUserByName(usernameToCheck);
     // console.log(usernameInDB);
@@ -48,7 +46,8 @@ const checkUserLogin = async (usernameToCheck, passwordToCheck) => {
 
         }
 
-        console.log(userLoginData);
+        // console.log(userLoginData);
+        return userLoginData;
 
     }
 

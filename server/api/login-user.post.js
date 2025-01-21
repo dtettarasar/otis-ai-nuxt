@@ -12,12 +12,13 @@ export default defineEventHandler(async (event) => {
     console.log("Username:", body.username);
     console.log("Password:", body.password);
 
-    await checkUserLogin(body.username, body.password);
+    const userLoginData = await checkUserLogin(body.username, body.password);
+    console.log(userLoginData);
   
     // Retourner une réponse
     return {
-      success: true,
-      message: "Données reçues avec succès.",
+      message: "received response from login process",
+      loginData: userLoginData
     };
 
 });
