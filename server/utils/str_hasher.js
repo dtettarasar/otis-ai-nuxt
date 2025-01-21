@@ -1,6 +1,6 @@
 import bcrypt from "bcryptjs";
 
-const genHashedStr = async (strToHash) => {
+export const genHashedStr = async (strToHash) => {
 
     console.log('init genHashedStr function');
 
@@ -19,7 +19,7 @@ const genHashedStr = async (strToHash) => {
 
 }
 
-const checkHash = async (strToCheck, hashToCheck) => {
+export const checkHash = async (strToCheck, hashToCheck) => {
 
     console.log('init checkHash function');
 
@@ -45,5 +45,3 @@ const checkHash = async (strToCheck, hashToCheck) => {
     }
 
 }
-
-module.exports = { genHashedStr, checkHash };

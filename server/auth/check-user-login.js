@@ -1,4 +1,5 @@
 import {findUserByName, getUserPsw} from '../controllers/user-controller';
+import {checkHash} from '../utils/str_hasher';
 
 const checkUserLogin = async (usernameToCheck, passwordToCheck) => {
 
@@ -25,6 +26,12 @@ const checkUserLogin = async (usernameToCheck, passwordToCheck) => {
         console.log('User exist in DB');
         const userToCheckAuth = usernameInDB[0];
         console.log(userToCheckAuth);
+
+        const hashObj = await getUserPsw(userToCheckAuth._id);
+        console.log(hashObj);
+
+        const hashResult = await checkHash(passwordToCheck, hashObj.password);
+        console.log('hashResult: ' + hashResult);
 
     }
 
