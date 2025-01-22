@@ -26,8 +26,28 @@ export default defineEventHandler(async (event) => {
 
       console.log("user login valid");
       console.log("create tokens here");
-      createToken(userLoginData, process.env.ACCESS_TOKEN_SECRET, process.env.ACCESS_TOKEN_EXP);
-      userAuthObj.authSuccess = userLoginData.authSuccess;
+
+      const accessToken = await createToken(userLoginData, process.env.ACCESS_TOKEN_SECRET, process.env.ACCESS_TOKEN_EXP);
+      const refreshToken = await createToken(userLoginData, process.env.REFRESH_TOKEN_SECRET, process.env.REFRESH_TOKEN_EXP);
+
+      // console.log("accessToken: "); 
+      // console.log(accessToken);
+
+      // console.log("refreshToken: ")
+      // console.log(refreshToken);
+
+      if (accessToken && refreshToken) {
+
+        console.log("token creation done");
+        userAuthObj.accessToken = accessToken;
+        userAuthObj.refreshToken = refreshToken;
+        userAuthObj.authSuccess = userLoginData.authSuccess;
+
+      } else {
+
+        console.error('token creation failed');
+
+      }
 
     } else {
 
@@ -37,8 +57,10 @@ export default defineEventHandler(async (event) => {
   
     // Retourner une réponse
     return {
+
       message: "received response from login process",
       userAuthObj: userAuthObj
+
     };
 
 });

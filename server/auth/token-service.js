@@ -1,4 +1,4 @@
-import * as jwt from 'jsonwebtoken'
+import jwt from 'jsonwebtoken'
 
 export const createToken = async (user, secretKey, expirationTime) => {
 
@@ -9,6 +9,22 @@ export const createToken = async (user, secretKey, expirationTime) => {
         secretKey: secretKey,
         expirationTime: expirationTime
     });
+
+    try {
+
+        const accessToken = jwt.sign(user, secretKey, {expiresIn: expirationTime});
+
+        // console.log("accessToken: "); 
+        // console.log(accessToken);
+
+        return accessToken;
+
+    } catch (err) {
+
+        console.error("create token error: " + err);
+        return false;
+
+    }
 
 };
 
