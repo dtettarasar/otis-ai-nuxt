@@ -1,8 +1,14 @@
 import * as jwt from 'jsonwebtoken'
 
-export const createToken = async () => {
+export const createToken = async (user, secretKey, expirationTime) => {
 
     console.log('init createToken function');
+    console.log("arguments: ");
+    console.log({
+        user: user,
+        secretKey: secretKey,
+        expirationTime: expirationTime
+    });
 
 };
 

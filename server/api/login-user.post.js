@@ -26,7 +26,7 @@ export default defineEventHandler(async (event) => {
 
       console.log("user login valid");
       console.log("create tokens here");
-      createToken();
+      createToken(userLoginData, process.env.ACCESS_TOKEN_SECRET, process.env.ACCESS_TOKEN_EXP);
       userAuthObj.authSuccess = userLoginData.authSuccess;
 
     } else {
