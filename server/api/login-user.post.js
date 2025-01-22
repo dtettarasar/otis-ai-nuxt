@@ -14,6 +14,17 @@ export default defineEventHandler(async (event) => {
 
     const userLoginData = await checkUserLogin(body.username, body.password);
     console.log(userLoginData);
+
+    if (userLoginData.authSuccess) {
+
+      console.log("user login valid");
+      console.log("create tokens here");
+
+    } else {
+
+      console.log('user login not valid');
+
+    }
   
     // Retourner une réponse
     return {
