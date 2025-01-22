@@ -34,7 +34,7 @@ const submitForm = async () => {
 
         console.log("Backend response:", response);
 
-        if (response.success) {
+        if (response.loginData.authSuccess) {
 
             showSuccess.value = true;
             hideSubmitBtn.value = true;
