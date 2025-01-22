@@ -1,6 +1,7 @@
 // server/api/login-user.post.js
 
 import checkUserLogin from '../auth/check-user-login';
+import { createToken } from '../auth/token-service';
 
 export default defineEventHandler(async (event) => {
 
@@ -25,6 +26,7 @@ export default defineEventHandler(async (event) => {
 
       console.log("user login valid");
       console.log("create tokens here");
+      createToken();
       userAuthObj.authSuccess = userLoginData.authSuccess;
 
     } else {
