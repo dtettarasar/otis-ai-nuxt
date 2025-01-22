@@ -12,6 +12,12 @@ export default defineEventHandler(async (event) => {
     console.log("Username:", body.username);
     console.log("Password:", body.password);
 
+    const userAuthObj = {
+      authSuccess: false,
+      accessToken: null,
+      refreshToken: null
+    }
+
     const userLoginData = await checkUserLogin(body.username, body.password);
     console.log(userLoginData);
 
@@ -19,6 +25,7 @@ export default defineEventHandler(async (event) => {
 
       console.log("user login valid");
       console.log("create tokens here");
+      userAuthObj.authSuccess = userLoginData.authSuccess;
 
     } else {
 
@@ -29,7 +36,7 @@ export default defineEventHandler(async (event) => {
     // Retourner une réponse
     return {
       message: "received response from login process",
-      loginData: userLoginData
+      userAuthObj: userAuthObj
     };
 
 });

@@ -47,9 +47,10 @@ const checkUserLogin = async (usernameToCheck, passwordToCheck) => {
         }
 
         // console.log(userLoginData);
-        return userLoginData;
 
     }
+
+    return userLoginData;
 
 }
 
