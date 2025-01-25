@@ -1,14 +1,10 @@
 import { expect, test } from 'vitest';
 import { initDB, closeDB } from '../../../server/database/database.js';
 
-import dotenv from 'dotenv';
-dotenv.config(); // Charger les variables d'environnement
-
 let dbConnection;
 
 beforeAll(async () => {
     
-    process.env.DB_URL = 'mongodb://localhost:27017/testdb';
     dbConnection = await initDB(process.env.DB_URL);
 
 });
