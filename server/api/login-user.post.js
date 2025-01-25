@@ -5,7 +5,7 @@ import { createToken } from '../auth/token-service';
 
 export default defineEventHandler(async (event) => {
 
-    // config is used to access the values from the .env file through nuwt.config.ts
+    // config is used to access the values from the .env file through nuxt.config.ts
     const config = useRuntimeConfig();
 
     // Récupérer les données envoyées dans la requête
