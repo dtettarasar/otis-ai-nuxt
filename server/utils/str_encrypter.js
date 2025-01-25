@@ -2,12 +2,12 @@ import crypto from 'node:crypto';
 // const secretKey = process.env.ENCRYPTION_KEY;
 // const encryptionAlgo = 'aes-256-cbc';
 
-export const encryptString = async (strToEncrypt) => {
+export const encryptString = async (strToEncrypt, secretKey) => {
 
     // console.log('init encryptString method');
     // console.log('encryptionKey: ' + process.env.ENCRYPTION_KEY);
 
-    const secretKey = process.env.ENCRYPTION_KEY;
+    //const secretKey = process.env.ENCRYPTION_KEY;
     const encryptionAlgo = 'aes-256-cbc';
 
     try {
@@ -37,11 +37,11 @@ export const encryptString = async (strToEncrypt) => {
 
 }
 
-export const decryptString = async (encryptionObj) => {
+export const decryptString = async (encryptionObj, secretKey) => {
     
     // console.log('init decryptString method');
 
-    const secretKey = process.env.ENCRYPTION_KEY;
+    //const secretKey = process.env.ENCRYPTION_KEY;
     const encryptionAlgo = 'aes-256-cbc';
 
     // console.log(encryptionObj);

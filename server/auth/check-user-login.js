@@ -4,6 +4,8 @@ import { encryptString } from '../utils/str_encrypter';
 
 const checkUserLogin = async (usernameToCheck, passwordToCheck) => {
 
+    const config = useRuntimeConfig();
+
     const userLoginData = {
         authSuccess: false,
         userIdEncryption: {},
@@ -42,7 +44,7 @@ const checkUserLogin = async (usernameToCheck, passwordToCheck) => {
             userLoginData.authSuccess = true;
 
             // make an encrypted version of the id that will be passed to the token before its creation
-            userLoginData.userIdEncryption = await encryptString(userToCheckAuth._id.toHexString());
+            userLoginData.userIdEncryption = await encryptString(userToCheckAuth._id.toHexString(), config.encryptionKey);
 
         }
 
