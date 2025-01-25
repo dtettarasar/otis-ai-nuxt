@@ -5,12 +5,13 @@ import dotenv from 'dotenv';
 dotenv.config(); // Charger les variables d'environnement
 
 const testStr = "The Chase Is Better Than The Catch";
+const secretKey = process.env.ENCRYPTION_KEY;
 
 let testEncryption = {};
 
 test('test the encrypter: make sure it returns an object', async () => {
 
-    testEncryption = await encryptString(testStr);
+    testEncryption = await encryptString(testStr, secretKey);
     //console.log(testEncryption);
     expect(testEncryption).toBeTypeOf('object');
 
@@ -33,7 +34,7 @@ test('test the object returned by the encrypter', async () => {
 
 test('test the decrypter', async () => {
 
-    const decryptedStr = await decryptString(testEncryption);
+    const decryptedStr = await decryptString(testEncryption, secretKey);
 
     
     console.log("testEncryption: ");
