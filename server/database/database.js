@@ -2,13 +2,11 @@ import mongoose from 'mongoose';
 
 let isConnected = false;
 
-// const config = useRuntimeConfig();
-
-export async function initDB() {
+export async function initDB(mongoDBUrl) {
 
     console.log('start initDB function');
     console.log('MongoDB url: ');
-    console.log(process.env.DB_URL);
+    console.log(mongoDBUrl);
 
     if (isConnected) {
         console.log('MongoDB is already connected.');
@@ -16,7 +14,7 @@ export async function initDB() {
     }
 
     try {
-        const connection = await mongoose.connect(process.env.DB_URL);
+        const connection = await mongoose.connect(mongoDBUrl);
         isConnected = connection.connections[0].readyState;
         console.log('Connected to MongoDB');
         return connection;
