@@ -5,6 +5,9 @@ import { createToken } from '../auth/token-service';
 
 export default defineEventHandler(async (event) => {
 
+    // config is used to access the values from the .env file through nuwt.config.ts
+    const config = useRuntimeConfig();
+
     // Récupérer les données envoyées dans la requête
     const body = await readBody(event);
   
@@ -27,8 +30,11 @@ export default defineEventHandler(async (event) => {
       console.log("user login valid");
       console.log("create tokens here");
 
-      const accessToken = await createToken(userLoginData, process.env.ACCESS_TOKEN_SECRET, process.env.ACCESS_TOKEN_EXP);
-      const refreshToken = await createToken(userLoginData, process.env.REFRESH_TOKEN_SECRET, process.env.REFRESH_TOKEN_EXP);
+      // const accessToken = await createToken(userLoginData, process.env.ACCESS_TOKEN_SECRET, process.env.ACCESS_TOKEN_EXP);
+      // const refreshToken = await createToken(userLoginData, process.env.REFRESH_TOKEN_SECRET, process.env.REFRESH_TOKEN_EXP);
+
+      const accessToken = await createToken(userLoginData, config.accessTokenSecret, config.accessTokenExpiration);
+      const refreshToken = await createToken(userLoginData, config.refreshTokenSecret, config.refreshTokenExpiration);
 
       // console.log("accessToken: "); 
       // console.log(accessToken);

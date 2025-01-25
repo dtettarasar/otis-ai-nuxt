@@ -16,6 +16,10 @@ export default defineNuxtConfig({
   runtimeConfig: {
     mongoUri: process.env.DB_URL,
     encryptionKey: process.env.ENCRYPTION_KEY,
+    accessTokenSecret: process.env.ACCESS_TOKEN_SECRET,
+    accessTokenExpiration: process.env.ACCESS_TOKEN_EXP,
+    refreshTokenSecret: process.env.REFRESH_TOKEN_SECRET,
+    refreshTokenExpiration: process.env.REFRESH_TOKEN_EXP,
     // jwtSecret: process.env.JWT_SECRET,
     public: {
         apiBase: process.env.API_BASE || 'http://localhost:3000'
