@@ -8,12 +8,11 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare",
     "start": "node .output/server/index.mjs",
-    "prestart": "nuxt prepare",
     "test": "vitest --run",
     "test:watch": "vitest",
-    "coverage": "vitest run --coverage"
+    "coverage": "vitest run --coverage",
+    "install:prod": "npm install --production"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
