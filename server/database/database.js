@@ -2,6 +2,10 @@ import mongoose from 'mongoose';
 
 let isConnected = false;
 
+process.on('unhandledRejection', (reason, promise) => {
+    console.error('Unhandled Rejection at:', promise, 'reason:', reason);
+});
+
 export async function initDB(mongoDBUrl) {
 
     console.log('start initDB function');
@@ -14,12 +18,14 @@ export async function initDB(mongoDBUrl) {
     }
 
     try {
+        console.log('Attempting to connect to MongoDB...');
         const connection = await mongoose.connect(mongoDBUrl);
         isConnected = connection.connections[0].readyState;
         console.log('Connected to MongoDB');
         return connection;
     } catch (error) {
         console.error('Error connecting to MongoDB:', error);
+        console.trace();
         throw error;
     }
 }
