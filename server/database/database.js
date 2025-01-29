@@ -22,8 +22,8 @@ export async function initDB(mongoDBUrl) {
     try {
         console.log('Attempting to connect to MongoDB...');
         const connection = await mongoose.connect(mongoDBUrl, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
+            // useNewUrlParser: true,
+            // useUnifiedTopology: true,
             serverSelectionTimeoutMS: 30000, // 30 sec pour éviter un timeout rapide
         });
         isConnected = connection.connections[0].readyState;
