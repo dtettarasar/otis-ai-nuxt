@@ -2,6 +2,8 @@ import mongoose from 'mongoose';
 
 let isConnected = false;
 
+mongoose.set('debug', true);
+
 process.on('unhandledRejection', (reason, promise) => {
     console.error('Unhandled Rejection at:', promise, 'reason:', reason);
 });
@@ -19,7 +21,11 @@ export async function initDB(mongoDBUrl) {
 
     try {
         console.log('Attempting to connect to MongoDB...');
-        const connection = await mongoose.connect(mongoDBUrl);
+        const connection = await mongoose.connect(mongoDBUrl, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+            serverSelectionTimeoutMS: 30000, // 30 sec pour éviter un timeout rapide
+        });
         isConnected = connection.connections[0].readyState;
         console.log('Connected to MongoDB');
         return connection;
