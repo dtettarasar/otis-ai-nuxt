@@ -32,7 +32,9 @@ const togglePasswordRepeat = () => {
 
 const submitForm = async () => {
 
-    console.log("init form submission");
+    console.log("init register process");
+    console.log('values');
+    console.log(user);
 
 };
 
@@ -54,14 +56,14 @@ onMounted(() => {
             <div class="mb-3">
 
                 <label class="form-label" for="username"><i class="bi bi-person-fill"></i> <b>Username</b></label>
-                <input class="form-control" type="text" placeholder="Enter Username" name="username" id="username" required>
+                <input v-model="user.name" class="form-control" type="text" placeholder="Enter Username" name="username" id="username" required>
 
             </div>
 
             <div class="mb-3">
 
                 <label class="form-label" for="email"><i class="bi bi-envelope-at-fill"></i> <b>Email</b></label>
-                <input class="form-control" type="email" placeholder="Enter Email" name="email" id="email" required>
+                <input v-model="user.email" class="form-control" type="email" placeholder="Enter Email" name="email" id="email" required>
 
             </div>
 
@@ -97,6 +99,11 @@ onMounted(() => {
 
                 </div>
 
+            </div>
+
+            <div class="text-to-login">
+                <p style="display:inline-block">Already have an account? </p>
+                <p><strong><router-link to="/login">Login here!</router-link></strong></p>
             </div>
 
             <button v-if="!hideSubmitBtn" type="submit" class="btn btn-primary">Create account</button>
