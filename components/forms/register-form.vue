@@ -26,6 +26,10 @@ const togglePassword = () => {
     showPassword.value = !showPassword.value;
 };
 
+const togglePasswordRepeat = () => {
+    showPasswordRepeat.value = !showPasswordRepeat.value;
+};
+
 onMounted(() => {
     console.log("register form is mounted");
     console.log(formEl.value);
@@ -65,6 +69,23 @@ onMounted(() => {
 
                     <button @click="togglePassword" class="btn btn-outline-secondary" type="button">
                         <i v-if="!showPassword" class="bi bi-eye-fill"></i>
+                        <i v-else class="bi bi-eye-slash-fill"></i>
+                    </button>
+
+                </div>
+
+            </div>
+
+            <div class="mb-3" >
+
+                <label class="form-label" for="psw-repeat"><i class="bi bi-key-fill"></i> <b>Repeat Password</b></label>
+
+                <div class="input-group">
+
+                    <input v-bind:type="showPasswordRepeat ? 'text' : 'password'" v-model="user.pwdRepeat" class="form-control" placeholder="Repeat Password" name="pwd-repeat" id="pwd-repeat" required>
+
+                    <button @click="togglePasswordRepeat" class="btn btn-outline-secondary" type="button">
+                        <i v-if="!showPasswordRepeat" class="bi bi-eye-fill"></i>
                         <i v-else class="bi bi-eye-slash-fill"></i>
                     </button>
 
