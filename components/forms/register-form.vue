@@ -30,6 +30,12 @@ const togglePasswordRepeat = () => {
     showPasswordRepeat.value = !showPasswordRepeat.value;
 };
 
+const submitForm = async () => {
+
+    console.log("init form submission");
+
+};
+
 onMounted(() => {
     console.log("register form is mounted");
     console.log(formEl.value);
@@ -41,7 +47,7 @@ onMounted(() => {
     
     <div>
 
-        <form ref="formEl">
+        <form ref="formEl" @submit.prevent="submitForm" method="post">
 
             <p>Please use the form below to create your account.</p>
 
