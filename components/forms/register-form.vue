@@ -1,10 +1,10 @@
 <script setup>
 
-import { ref, onMounted } from 'vue'
+import { reactive, ref, onMounted, computed } from 'vue'
 
 // Reactive states
 
-const user = ref({
+const user = reactive({
 
     name: '', 
     pwd: '',
@@ -21,6 +21,11 @@ const showPasswordRepeat = ref(false);
 
 const formEl = ref();
 
+// Computed
+const passwordsMatch = computed(() => {
+    return user.pwd === user.pwdRepeat;
+})
+
 // Methods 
 const togglePassword = () => {
     showPassword.value = !showPassword.value;
@@ -36,14 +41,21 @@ const submitForm = async () => {
     console.log('values');
     console.log(user);
 
+    console.log("password match: ");
+    console.log(passwordsMatch.value);
+
+};
+
+const createUserReq = async () => {
+
     try {
 
         const response = await $fetch('/api/register-user', {
             method: 'POST',
             body: {
-                username: user.value.name,
-                password: user.value.pwd,
-                email: user.value.email,
+                username: user.name,
+                password: user.pwd,
+                email: user.email,
             },
         });
 
@@ -57,7 +69,7 @@ const submitForm = async () => {
 
     }
 
-};
+}
 
 onMounted(() => {
     console.log("register form is mounted");
@@ -128,6 +140,10 @@ onMounted(() => {
             </div>
 
             <button v-if="!hideSubmitBtn" type="submit" class="btn btn-primary">Create account</button>
+
+            <div v-if="!passwordsMatch" class="alert mt-3 alert-danger" role="alert">
+                <i class="bi bi-exclamation-circle"></i> Please make sure your password match.
+            </div>
 
         </form>
 
