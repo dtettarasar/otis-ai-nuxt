@@ -13,6 +13,14 @@ const user = reactive({
 
 });
 
+const state = reactive({
+    showError: false,
+    showSuccess: false,
+    showPassword: false,
+    hideSubmitBtn: false,
+    showPasswordRepeat: false,
+});
+
 const showError = ref(false);
 const showSuccess = ref(false);
 const showPassword = ref(false);
@@ -28,11 +36,11 @@ const passwordsMatch = computed(() => {
 
 // Methods 
 const togglePassword = () => {
-    showPassword.value = !showPassword.value;
+    state.showPassword = !state.showPassword;
 };
 
 const togglePasswordRepeat = () => {
-    showPasswordRepeat.value = !showPasswordRepeat.value;
+    state.showPasswordRepeat = !state.showPasswordRepeat;
 };
 
 const submitForm = async () => {
@@ -106,10 +114,10 @@ onMounted(() => {
 
                 <div class="input-group">
 
-                    <input :type="showPassword ? 'text' : 'password'" v-model="user.pwd" class="form-control" placeholder="Enter Password" name="pwd" id="pwd" required>
+                    <input :type="state.showPassword ? 'text' : 'password'" v-model="user.pwd" class="form-control" placeholder="Enter Password" name="pwd" id="pwd" required>
 
                     <button @click="togglePassword" class="btn btn-outline-secondary" type="button">
-                        <i v-if="!showPassword" class="bi bi-eye-fill"></i>
+                        <i v-if="!state.showPassword" class="bi bi-eye-fill"></i>
                         <i v-else class="bi bi-eye-slash-fill"></i>
                     </button>
 
@@ -123,10 +131,10 @@ onMounted(() => {
 
                 <div class="input-group">
 
-                    <input v-bind:type="showPasswordRepeat ? 'text' : 'password'" v-model="user.pwdRepeat" class="form-control" placeholder="Repeat Password" name="pwd-repeat" id="pwd-repeat" required>
+                    <input v-bind:type="state.showPasswordRepeat ? 'text' : 'password'" v-model="user.pwdRepeat" class="form-control" placeholder="Repeat Password" name="pwd-repeat" id="pwd-repeat" required>
 
                     <button @click="togglePasswordRepeat" class="btn btn-outline-secondary" type="button">
-                        <i v-if="!showPasswordRepeat" class="bi bi-eye-fill"></i>
+                        <i v-if="!state.showPasswordRepeat" class="bi bi-eye-fill"></i>
                         <i v-else class="bi bi-eye-slash-fill"></i>
                     </button>
 
