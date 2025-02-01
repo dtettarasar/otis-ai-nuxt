@@ -36,6 +36,27 @@ const submitForm = async () => {
     console.log('values');
     console.log(user);
 
+    try {
+
+        const response = await $fetch('/api/register-user', {
+            method: 'POST',
+            body: {
+                username: user.value.name,
+                password: user.value.pwd,
+                email: user.value.email,
+            },
+        });
+
+        console.log("Backend response:", response);
+
+    } catch (error) {
+
+        console.error(err);
+        showError.value = true;
+        showSuccess.value = false;
+
+    }
+
 };
 
 onMounted(() => {
