@@ -21,12 +21,6 @@ const state = reactive({
     showPasswordRepeat: false,
 });
 
-const showError = ref(false);
-const showSuccess = ref(false);
-const showPassword = ref(false);
-const hideSubmitBtn = ref(false);
-const showPasswordRepeat = ref(false);
-
 const formEl = ref();
 
 // Computed
@@ -147,7 +141,7 @@ onMounted(() => {
                 <p><strong><router-link to="/login">Login here!</router-link></strong></p>
             </div>
 
-            <button v-if="!hideSubmitBtn" type="submit" class="btn btn-primary">Create account</button>
+            <button v-if="!state.hideSubmitBtn" type="submit" class="btn btn-primary">Create account</button>
 
             <div v-if="!passwordsMatch" class="alert mt-3 alert-danger" role="alert">
                 <i class="bi bi-exclamation-circle"></i> Please make sure your password match.
