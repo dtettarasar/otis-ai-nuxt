@@ -35,6 +35,13 @@ const passwordSecure = computed(() => {
 
 });
 
+const userNameValid = computed(() => {
+
+    const regex = /^[a-zA-Z0-9]+$/; // Regex pour vérifier si le username ne contient que des lettres (majuscules et minuscules) et des chiffres
+    return regex.test(user.name);
+
+});
+
 // Methods 
 const togglePassword = () => {
     state.showPassword = !state.showPassword;
@@ -156,6 +163,10 @@ onMounted(() => {
 
             <div v-if="!passwordSecure && user.pwd != ''" class="alert mt-3 alert-danger" >
                 <i class="bi bi-exclamation-circle"></i> Your password isn't secure enough: please make sure it contains at least 8 characters, including at least one lowercase letter, one uppercase letter, one number and one special character.
+            </div>
+
+            <div v-if="!userNameValid && user.name != ''" class="alert mt-3 alert-danger">
+                <i class="bi bi-exclamation-circle"></i> The username can only contain letters (upper and lower case) and numbers.
             </div>
 
         </form>
