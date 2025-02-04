@@ -69,6 +69,12 @@ const submitForm = async () => {
     console.log("password match: ");
     console.log(passwordsMatch.value);
 
+    if (!passwordsMatch.value) {
+
+        console.log('Error: password mismatch, form cannot create account');
+
+    }
+
 };
 
 const createUserReq = async () => {
