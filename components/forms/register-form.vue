@@ -51,6 +51,12 @@ const emailValid = computed(() => {
 
 });
 
+const allParamsValid = computed(() => {
+
+    return passwordsMatch.value && passwordSecure.value && userNameValid.value && emailValid.value;
+
+});
+
 // Methods 
 const togglePassword = () => {
     state.showPassword = !state.showPassword;
@@ -66,12 +72,37 @@ const submitForm = async () => {
     console.log('values');
     console.log(user);
 
-    console.log("password match: ");
-    console.log(passwordsMatch.value);
+    if(!allParamsValid.value) {
 
-    if (!passwordsMatch.value) {
+        console.log("Errors: at least 1 param is not valid");
 
-        console.log('Error: password mismatch, form cannot create account');
+        if (!passwordsMatch.value) {
+
+            console.log('Error: password mismatch, form cannot create account');
+
+        } 
+
+        if (!passwordSecure.value) {
+
+            console.log('Error: password isnt secure, form cannot create account');
+
+        }
+
+        if (!userNameValid.value) {
+
+            console.log("Error: username isn't valid");
+
+        }
+
+        if (!emailValid.value) {
+
+            console.log("Error: email not valid");
+
+        }
+
+    } else {
+
+        console.log("params ok: init createUserReq method");
 
     }
 
