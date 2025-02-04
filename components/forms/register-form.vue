@@ -23,6 +23,11 @@ const state = reactive({
 
 const formEl = ref();
 
+//regex to test the param validity:
+const validUsernameRegex = /^[a-zA-Z0-9]+$/;
+const securePwdRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+const validEmailRegex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+
 // Computed
 const passwordsMatch = computed(() => {
     return user.pwd === user.pwdRepeat;
@@ -30,15 +35,19 @@ const passwordsMatch = computed(() => {
 
 const passwordSecure = computed(() => {
 
-    const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-    return regex.test(user.pwd);
+    return securePwdRegex.test(user.pwd);
 
 });
 
 const userNameValid = computed(() => {
 
-    const regex = /^[a-zA-Z0-9]+$/; // Regex pour vérifier si le username ne contient que des lettres (majuscules et minuscules) et des chiffres
-    return regex.test(user.name);
+    return validUsernameRegex.test(user.name);
+
+});
+
+const emailValid = computed(() => {
+
+    return validEmailRegex.test(user.email);
 
 });
 
@@ -162,11 +171,15 @@ onMounted(() => {
             </div>
 
             <div v-if="!passwordSecure && user.pwd != ''" class="alert mt-3 alert-danger" >
-                <i class="bi bi-exclamation-circle"></i> Your password isn't secure enough: please make sure it contains at least 8 characters, including at least one lowercase letter, one uppercase letter, one number and one special character.
+                <i class="bi bi-exclamation-circle"></i> Your password isn't secure enough: please make sure it contains at least 8 characters, including at least one lowercase letter, one uppercase letter, one number and one special character. Its should not include spaces as well
             </div>
 
             <div v-if="!userNameValid && user.name != ''" class="alert mt-3 alert-danger">
                 <i class="bi bi-exclamation-circle"></i> The username can only contain letters (upper and lower case) and numbers.
+            </div>
+
+            <div v-if="!emailValid && user.email != ''" class="alert mt-3 alert-danger">
+                <i class="bi bi-exclamation-circle"></i> Please enter an email address with a valid format
             </div>
 
         </form>
