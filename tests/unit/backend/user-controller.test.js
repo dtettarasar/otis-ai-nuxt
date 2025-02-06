@@ -48,11 +48,6 @@ const testUsers = buildTestUsers();
 
 await testUserCreation(testUsers);
 
-
-
-//const testUsers = await buildTestUsers();
-//await testUserCreation(testUsers);
-
 /*
 test('test user creation', async () => {
 
@@ -72,9 +67,24 @@ test('test error handling for user creation: test wrong username', async () => {
     await expect(testUsers[3].creationResult.creationStatus).toBe(false);
     await expect(testUsers[3].creationResult.Error).toBe('username not valid');
 
-    //console.log(testUserObj.userCont);
+});
+
+test('test error handling for user creation: test wrong password', async () => {
+
+    await expect(testUsers[4].creationResult.creationStatus).toBe(false);
+    await expect(testUsers[4].creationResult.Error).toBe('password not secure enough');
+
+    await expect(testUsers[5].creationResult.creationStatus).toBe(false);
+    await expect(testUsers[5].creationResult.Error).toBe('password not secure enough');
 
 });
 
+test('test error handling for user creation: test wrong email format', async () => {
 
+    await expect(testUsers[6].creationResult.creationStatus).toBe(false);
+    await expect(testUsers[6].creationResult.Error).toBe('email format not valid');
 
+    await expect(testUsers[7].creationResult.creationStatus).toBe(false);
+    await expect(testUsers[7].creationResult.Error).toBe('email format not valid');
+
+});
