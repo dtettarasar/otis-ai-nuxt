@@ -53,6 +53,28 @@ await testUserCreation(testUsers);
 //const testUsers = await buildTestUsers();
 //await testUserCreation(testUsers);
 
+/*
+test('test user creation', async () => {
+
+    await expect(testUsers[0].creationResult.creationStatus).toBe(true);
+    await expect(testUsers[1].creationResult.creationStatus).toBe(true);
+
+    //console.log(testUserObj.userCont);
+
+});
+*/
+
+test('test error handling for user creation: test wrong username', async () => {
+
+    await expect(testUsers[2].creationResult.creationStatus).toBe(false);
+    await expect(testUsers[2].creationResult.Error).toBe('username not valid');
+
+    await expect(testUsers[3].creationResult.creationStatus).toBe(false);
+    await expect(testUsers[3].creationResult.Error).toBe('username not valid');
+
+    //console.log(testUserObj.userCont);
+
+});
 
 
 
