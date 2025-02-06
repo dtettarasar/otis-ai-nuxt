@@ -103,6 +103,7 @@ const submitForm = async () => {
     } else {
 
         console.log("params ok: init createUserReq method");
+        createUserReq();
 
     }
 
