@@ -73,10 +73,13 @@ export const createUser = async (usernameParam, emailParam, passwordParam) => {
 
     }
 
+    return {creationStatus: true, Error: null};
+
+
 };
 
 // used to generate users for unit testing
-export const createTestUser = async (comment, userNameStr, emailNameStr, emailDomainStr, passwordStr) => {
+export const createTestUser = (comment, userNameStr, emailNameStr, emailDomainStr, passwordStr) => {
 
     const int = Math.floor(Math.random() * 10000);
 

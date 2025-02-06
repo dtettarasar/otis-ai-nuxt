@@ -14,22 +14,45 @@ afterAll(async () => {
     await closeDB();
 });
 
-const buildTestUsers = async () => {
+const buildTestUsers = () => {
 
     const testUsers = [];
-    await testUsers.push(createTestUser('user with correct parameters','DummyTestman', 'dummy.testman', '@otis-ai-test.eu', 'Test001!'));
-    await testUsers.push(createTestUser('user with correct parameters','KingPilou', 'king.pilou', '@otis-ai-test.eu', 'Test001!'));
-    await testUsers.push(createTestUser('user with wrong username', 'VivinaDaBest!', 'vivinadabest', '@otis-ai-test.eu', 'Test001!'));
-    await testUsers.push(createTestUser('user with wrong username', 'Lea Kpop', 'lk', '@otis-ai-test.eu', 'Test001!'));
-    await testUsers.push(createTestUser('user with wrong password', 'WilliballZ', 'williballz', '@otis-ai-test.eu', 'dbz'));
-    await testUsers.push(createTestUser('user with wrong password', 'BruceTheSensei', 'bruce', '@otis-ai-test.eu', 'thebestracer63'));
-    await testUsers.push(createTestUser('user with wrong email format', 'DummyTestlady', '!?dummy', '@otis-ai-test.eu', 'Test001!'));
-    await testUsers.push(createTestUser('user with wrong email format', 'DummyTestgirl', 'dummy.testgirl', 'otis-ai-test.eu', 'Test001!'));
+    testUsers.push(createTestUser('user with correct parameters','DummyTestman', 'dummy.testman', '@otis-ai-test.eu', 'Test001!'));
+    testUsers.push(createTestUser('user with correct parameters','KingPilou', 'king.pilou', '@otis-ai-test.eu', 'Test001!'));
+    testUsers.push(createTestUser('user with wrong username', 'VivinaDaBest!', 'vivinadabest', '@otis-ai-test.eu', 'Test001!'));
+    testUsers.push(createTestUser('user with wrong username', 'Lea Kpop', 'lk', '@otis-ai-test.eu', 'Test001!'));
+    testUsers.push(createTestUser('user with wrong password', 'WilliballZ', 'williballz', '@otis-ai-test.eu', 'dbz'));
+    testUsers.push(createTestUser('user with wrong password', 'BruceTheSensei', 'bruce', '@otis-ai-test.eu', 'thebestracer63'));
+    testUsers.push(createTestUser('user with wrong email format', 'DummyTestlady', '!?dummy', '@otis-ai-test.eu', 'Test001!'));
+    testUsers.push(createTestUser('user with wrong email format', 'DummyTestgirl', 'dummy.testgirl', 'otis-ai-test.eu', 'Test001!'));
 
     return testUsers;
 
 }
 
-const testUsers = await buildTestUsers();
-console.log(testUsers);
+const testUserCreation = async (testUsersArray) => {
+
+    //console.log(testUsersArray);
+    for (let i = 0; i < testUsersArray.length; i++ ) {
+
+        // await console.log(testUsersArray[i]);
+        const test = await createUser(testUsersArray[i].username, testUsersArray[i].email, testUsersArray[i].password);
+        testUsersArray[i].creationResult = test;
+        await console.log(testUsersArray[i]);
+
+    }
+
+}
+
+const testUsers = buildTestUsers();
+
+await testUserCreation(testUsers);
+
+
+
+//const testUsers = await buildTestUsers();
+//await testUserCreation(testUsers);
+
+
+
 
