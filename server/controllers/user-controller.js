@@ -93,8 +93,10 @@ export const createTestUser = async (comment, userNameStr, emailNameStr, emailDo
         authRefreshTokenResult: null
     }
     
-    console.log("init testUser creation");
-    console.log("test user Object: ");
-    console.log(testUserObj);
-    
+    // console.log("init testUser creation");
+    // console.log("test user Object: ");
+    // console.log(testUserObj);
+
+    return testUserObj;
+
 }
