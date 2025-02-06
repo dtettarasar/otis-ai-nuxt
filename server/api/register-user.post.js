@@ -1,3 +1,5 @@
+import {createUser} from '../controllers/user-controller';
+
 export default defineEventHandler(async (event) => {
 
     console.log('received post request from register form');
@@ -5,8 +7,7 @@ export default defineEventHandler(async (event) => {
     // Récupérer les données envoyées dans la requête
     const body = await readBody(event);
 
-    console.log('body: ');
-    console.log(body);
+    createUser(body.username, body.email, body.password);
 
     return {
 

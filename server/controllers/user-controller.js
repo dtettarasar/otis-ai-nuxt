@@ -29,3 +29,21 @@ export const getUserPsw = async (userID) => {
         return null;
     }
 };
+
+export const createUser = async (usernameParam, emailParam, passwordParam) => {
+
+    const userData = {
+
+        username: usernameParam,
+        email: emailParam,
+        password: passwordParam,
+        creationStatus: null,
+        Error: null,
+
+    }
+
+    console.log("init user creation");
+    console.log("userData: ");
+    console.log(userData);
+
+};
