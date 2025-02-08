@@ -1,9 +1,12 @@
-import User from '../database/models/user'
+import User from '../database/models/user';
 
 export const findUserByName = async (userName) => {
     try {
-        const query = User.find({ username: userName }).select('username');
-        return await query.exec();
+
+        // const query = User.find({ username: userName }).select('username');
+        // return await query.exec();
+        return await User.findOne({ username: userName }).select('username');
+
     } catch (error) {
         console.error(error);
         return false;
@@ -12,8 +15,9 @@ export const findUserByName = async (userName) => {
 
 export const findUserByEmail = async (userEmail) => {
     try {
-        const query = User.find({ email: userEmail }).select('email');
-        return await query.exec();
+        
+        return await User.findOne({ email: userEmail }).select('email');
+
     } catch (error) {
         console.error(error);
         return false;
@@ -72,6 +76,46 @@ export const createUser = async (usernameParam, emailParam, passwordParam) => {
         return {creationStatus: false, Error: "email format not valid"};
 
     }
+
+    console.log("init create user method from user controller script");
+
+    // Check if username already exist in database
+    // const usernameInDB = await findUserByName(userData.username);
+
+    // Check if email already exist in database
+    // const emailInDB = await findUserByEmail(userData.email);
+
+    console.log("Checking username in DB...");
+    const usernameInDB = await findUserByName(userData.username);
+    console.log("Username in DB:", usernameInDB);
+
+    console.log("Checking email in DB...");
+    const emailInDB = await findUserByEmail(userData.email);
+    console.log("Email in DB:", emailInDB);
+
+    if (usernameInDB) {
+
+        console.log("username already exist in database");
+        console.log(`usernameInDB:`);
+        console.log(usernameInDB);
+
+        return {creationStatus: false, Error: "username already used"};
+
+    } else if (emailInDB) {
+
+        console.log('email already exist in database');
+        console.log(`emailInDB:`);
+        console.log(emailInDB);
+
+        return {creationStatus: false, Error: "email already used"};
+
+    } else {
+
+        console.log("username & email doesn't exist in database");
+        console.log("we can create new user");
+
+    }
+
 
     return {creationStatus: true, Error: null};
 
