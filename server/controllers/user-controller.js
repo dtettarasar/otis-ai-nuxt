@@ -114,6 +114,25 @@ export const createUser = async (usernameParam, emailParam, passwordParam) => {
         console.log("username & email doesn't exist in database");
         console.log("we can create new user");
 
+        const userToCreate = new User({
+            username: userData.username,
+            email: userData.email,
+            password: userData.password,
+        });
+
+        try {
+
+            const savedUserObj = await userToCreate.save();
+            return {creationStatus: true, userData: savedUserObj};
+
+        } catch(err) {
+
+            console.log(err);
+            const errMsg = `MongoDB creation error: ${err}`
+            return {creationStatus: false, Error: errMsg};
+
+        }
+
     }
 
 
