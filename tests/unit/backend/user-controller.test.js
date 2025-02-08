@@ -49,10 +49,21 @@ const testUsers = buildTestUsers();
 
 test('test user creation', async () => {
 
-    // await expect(testUsers[0].creationResult.creationStatus).toBe(true);
-    // await expect(testUsers[1].creationResult.creationStatus).toBe(true);
-
     await testUserCreation(testUsers);
+
+    await expect(testUsers[0].creationResult.creationStatus).toBe(true);
+    await expect(testUsers[1].creationResult.creationStatus).toBe(true);
+
+});
+
+test('test saved users data', async () => {
+
+    /*
+    Test here the username, email and password for the 2 first users.
+    Make a comparison between the initial users Object and the object returned by Mongodb after creation. 
+    Check that username & email are the same
+    Check that the hashed password in MongoDB object match the initial not hashed password. 
+    */
 
 });
 
