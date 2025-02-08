@@ -1,5 +1,5 @@
 import { expect, test } from 'vitest';
-import {createUser, createTestUser} from '../../../server/controllers/user-controller';
+import {findUserById, createUser, createTestUser} from '../../../server/controllers/user-controller';
 import { initDB, closeDB } from '../../../server/database/database.js';
 
 let dbConnection;
@@ -94,5 +94,29 @@ test('test error handling for user creation: test wrong email format', async () 
 
     await expect(testUsers[7].creationResult.creationStatus).toBe(false);
     await expect(testUsers[7].creationResult.Error).toBe('email format not valid');
+
+});
+
+test('test the findUserById method', async () => {
+
+    // console.log(testUsers[0].creationResult.userData._id);
+
+    
+    const userZero = testUsers[0].creationResult.userData;
+    const testFinder = await findUserById(userZero._id);
+
+    await expect(testFinder._id).toEqual(userZero._id);
+    await expect(testFinder.username).toEqual(userZero.username);
+    await expect(testFinder.email).toEqual(userZero.email);
+    await expect(testFinder.password).toEqual(userZero.password);
+
+    console.log(testFinder);
+
+    const falseUserId = "thisis1fakeuserid";
+    const testFailedFinder = await findUserById(falseUserId);
+
+    // console.log(testFailedFinder);
+
+    await expect(testFailedFinder).toBe(false);
 
 });

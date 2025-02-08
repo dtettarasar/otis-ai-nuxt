@@ -24,6 +24,23 @@ export const findUserByEmail = async (userEmail) => {
     }
 };
 
+export const findUserById = async (userId) => {
+
+    try {
+
+        const query = User.findById(userId);
+        const userFound = await query.exec();
+        return userFound;
+
+    } catch (error) {
+
+        console.log(error);
+        return false;
+
+    }
+
+};
+
 export const getUserPsw = async (userID) => {
     try {
         const query = User.findById(userID).select('_id password');
