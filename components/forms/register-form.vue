@@ -228,6 +228,14 @@ onMounted(() => {
                 <i class="bi bi-exclamation-circle"></i> Please enter an email address with a valid format
             </div>
 
+            <div v-if="state.showError" class="alert mt-3 alert-danger" role="alert">
+                <i class="bi bi-exclamation-circle"></i> Account creation error
+            </div>
+
+            <div v-if="state.showSuccess" class="alert mt-3 alert-success" role="alert">
+                <i class="bi bi-check-circle"></i> Account created
+            </div>
+
         </form>
 
     </div>
