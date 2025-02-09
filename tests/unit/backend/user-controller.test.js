@@ -1,5 +1,6 @@
 import { expect, test } from 'vitest';
 import {findUserById, findUserByName, findUserByEmail, createUser, createTestUser} from '../../../server/controllers/user-controller';
+import { checkHash } from '../../../server/utils/str_hasher';
 import { initDB, closeDB } from '../../../server/database/database.js';
 
 let dbConnection;
@@ -64,6 +65,17 @@ test('test saved users data', async () => {
     Check that username & email are the same
     Check that the hashed password in MongoDB object match the initial not hashed password. 
     */
+    // console.log("testUsers[0]");
+    // console.log(testUsers[0]);
+    const userCreatedInDB = testUsers[0].creationResult.userData;
+
+    // const testCheckHash = await checkHash(strToHash, hashedStr);
+    const testCheckHash = await checkHash(testUsers[0].password, userCreatedInDB.password);
+
+    await expect(testUsers[0].username).toEqual(userCreatedInDB.username);
+    await expect(testUsers[0].email).toEqual(userCreatedInDB.email);
+    await expect(testCheckHash).toBe(true);
+
 
 });
 
