@@ -124,11 +124,19 @@ const createUserReq = async () => {
 
         console.log("Backend response:", response);
 
+        console.log('creation status: ' + response.creationStatus);
+
+        // update the message displayed depending on the creation status
+        state.showError = !response.creationStatus;
+        state.showSuccess = response.creationStatus;
+
+        console.log(state);
+
     } catch (error) {
 
-        console.error(err);
-        showError.value = true;
-        showSuccess.value = false;
+        console.error(error);
+        state.showError = true;
+        state.showSuccess = false;
 
     }
 
