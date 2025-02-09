@@ -7,12 +7,13 @@ export default defineEventHandler(async (event) => {
     // Récupérer les données envoyées dans la requête
     const body = await readBody(event);
 
-    createUser(body.username, body.email, body.password);
+    const userCreation = await createUser(body.username, body.email, body.password);
+    console.log(userCreation);
 
     return {
 
         message: "received response from register process",
-        body: body,
+        creationStatus: userCreation.creationStatus,
 
     }
   
