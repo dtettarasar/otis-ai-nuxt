@@ -1,5 +1,5 @@
 import { expect, test } from 'vitest';
-import {findUserById, createUser, createTestUser} from '../../../server/controllers/user-controller';
+import {findUserById, findUserByName, createUser, createTestUser} from '../../../server/controllers/user-controller';
 import { initDB, closeDB } from '../../../server/database/database.js';
 
 let dbConnection;
@@ -120,3 +120,21 @@ test('test the findUserById method', async () => {
     await expect(testFailedFinder).toBe(false);
 
 });
+
+
+test('test the findUserByName method', async () => {
+
+    const userZero = testUsers[0].creationResult.userData;
+    const testFinder = await findUserByName(userZero.username);
+
+    await expect(testFinder).toBeTypeOf('object');
+    await expect(testFinder._id).toEqual(userZero._id);
+    await expect(testFinder.username).toEqual(userZero.username);
+
+    const userFakeUsername = "thisis1fakeusername";
+    const testFailedFinder = await findUserByName(userFakeUsername);
+
+    await expect(testFailedFinder).toBeNull();
+
+});
+
