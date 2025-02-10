@@ -228,12 +228,14 @@ onMounted(() => {
                 <i class="bi bi-exclamation-circle"></i> Please enter an email address with a valid format
             </div>
 
-            <div v-if="state.showError" class="alert mt-3 alert-danger" role="alert">
-                <i class="bi bi-exclamation-circle"></i> Account creation error
+            <div v-if="state.showError" class="alert alert-danger show mt-3" role="alert">
+                <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                <strong>Oops!</strong> An error occurred while creating your account. Please try again later.
             </div>
 
-            <div v-if="state.showSuccess" class="alert mt-3 alert-success" role="alert">
-                <i class="bi bi-check-circle"></i> Account created
+            <div v-if="state.showSuccess" class="alert alert-success show mt-3" role="alert">
+                <i class="bi bi-check-circle-fill me-2"></i>
+                <strong>Success!</strong> Your account has been created. You can now <a href="/login" class="alert-link">log in</a>.
             </div>
 
         </form>
