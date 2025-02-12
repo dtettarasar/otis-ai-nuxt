@@ -4,9 +4,9 @@ import registerForm from '~/components/forms/register-form.vue';
 
 describe('register-form.vue', () => {
 
-    describe('Validation du username', () => {
+    describe('username validation', () => {
 
-        it('devrait être invalide si le champ est vide', async () => {
+        it('should be not valid if the field is empty', async () => {
           const wrapper = mount(registerForm);
       
           // Met une valeur vide dans user.name
@@ -15,7 +15,7 @@ describe('register-form.vue', () => {
           expect(wrapper.vm.userNameValid).toBe(false);
         });
       
-        it('devrait être valide pour un username correct', async () => {
+        it('should be valid if a correct username is provided in the user data', async () => {
           const wrapper = mount(registerForm);
       
           // Change la valeur du champ username
@@ -25,7 +25,7 @@ describe('register-form.vue', () => {
           expect(wrapper.vm.userNameValid).toBe(true);
         });
       
-        it('devrait être invalide si le username contient des caractères spéciaux', async () => {
+        it('should not be valid if an incorrect name is provided in the user data', async () => {
           const wrapper = mount(registerForm);
       
           wrapper.vm.user.name = 'Invalid@User!';
@@ -36,9 +36,9 @@ describe('register-form.vue', () => {
     
       });
 
-      describe('Validation du mail', () => {
+      describe('Email validation', () => {
 
-        it('devrait être invalide si le champ est vide', async () => {
+        it('should be not valid if the field is empty', async () => {
             const wrapper = mount(registerForm);
         
             // Met une valeur vide dans user.name
