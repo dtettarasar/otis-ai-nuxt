@@ -57,7 +57,7 @@ describe('register-form.vue', () => {
 
           });
 
-          it('should not be valid is an incorrect email is provided in the user data', async () => {
+          it('should not be valid if an incorrect email is provided in the user data', async () => {
 
             const wrapper = mount(registerForm);
 
@@ -91,6 +91,16 @@ describe('register-form.vue', () => {
 
           expect(wrapper.vm.passwordSecure).toBe(false);
 
+
+        });
+
+        it('should be valid if a correct password is provided in the user data', async () => {
+
+          const wrapper = mount(registerForm);
+          wrapper.vm.user.pwd = "Test78!!"; 
+          await wrapper.vm.$nextTick();
+
+          expect(wrapper.vm.passwordSecure).toBe(true);
 
         });
 
