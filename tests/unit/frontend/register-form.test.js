@@ -81,6 +81,21 @@ describe('register-form.vue', () => {
 
       });
 
+      describe("Password validation", () => {
+
+        it('should not be valid if the field is empty', async () => {
+
+          const wrapper = mount(registerForm);
+
+          await wrapper.vm.$nextTick();
+
+          expect(wrapper.vm.passwordSecure).toBe(false);
+
+
+        });
+
+      });
+
 });
 
 
