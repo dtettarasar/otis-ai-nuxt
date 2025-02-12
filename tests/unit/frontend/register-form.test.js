@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils';
-import { describe, it, expect, test } from 'vitest';
+import { describe, it, expect } from 'vitest';
 import registerForm from '~/components/forms/register-form.vue';
 
 describe('register-form.vue', () => {
@@ -60,7 +60,7 @@ describe('register-form.vue', () => {
           it('should not be valid is an incorrect email is provided in the user data', async () => {
 
             const wrapper = mount(registerForm);
-            
+
             const invalidEmails = [
                 'incorrect.usermailtest.com',  // Pas de @
                 ' incorrect.usermailtest.com', // Espace devant
