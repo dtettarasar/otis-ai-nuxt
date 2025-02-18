@@ -108,11 +108,25 @@ describe('register-form.vue', () => {
 
       describe("Test allParamsValid parameter", () => {
 
-        it('should be false when no valid parameters is provided', async () => {
+        it('should be false when no valid parameters are provided', async () => {
 
           const wrapper = mount(registerForm);
           await wrapper.vm.$nextTick();
           expect(wrapper.vm.allParamsValid).toBe(false);
+
+        });
+
+        it('should be true when valid parameters are provided', async () => {
+
+          const wrapper = mount(registerForm);
+          wrapper.vm.user.pwd = "Test78!!";
+          wrapper.vm.user.pwdRepeat = "Test78!!";
+          wrapper.vm.user.email = 'valid.usermail@test.com';
+          wrapper.vm.user.name = 'ValidUser123';
+          
+          await wrapper.vm.$nextTick();
+
+          expect(wrapper.vm.allParamsValid).toBe(true);
 
         });
 
