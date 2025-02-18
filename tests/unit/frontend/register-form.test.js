@@ -106,6 +106,18 @@ describe('register-form.vue', () => {
 
       });
 
+      describe("Test allParamsValid parameter", () => {
+
+        it('should be false when no valid parameters is provided', async () => {
+
+          const wrapper = mount(registerForm);
+          await wrapper.vm.$nextTick();
+          expect(wrapper.vm.allParamsValid).toBe(false);
+
+        });
+
+      });
+
 });
 
 
