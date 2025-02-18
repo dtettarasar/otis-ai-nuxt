@@ -143,8 +143,8 @@ const createUserReq = async () => {
 }
 
 onMounted(() => {
-    console.log("register form is mounted");
-    console.log(formEl.value);
+    // console.log("register form is mounted");
+    // console.log(formEl.value);
 })
 
 </script>

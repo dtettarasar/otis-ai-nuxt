@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils';
 import { describe, it, expect } from 'vitest';
-import registerForm from '~/components/forms/register-form.vue';
+import registerForm from '../../../components/forms/register-form.vue';
 
 describe('register-form.vue', () => {
 

@@ -1,4 +1,4 @@
-import { expect, test } from 'vitest';
+import { expect, test, beforeAll, afterAll } from 'vitest';
 import {findUserById, findUserByName, findUserByEmail, createUser, createTestUser} from '../../../server/controllers/user-controller';
 import { checkHash } from '../../../server/utils/str_hasher';
 import { initDB, closeDB } from '../../../server/database/database.js';

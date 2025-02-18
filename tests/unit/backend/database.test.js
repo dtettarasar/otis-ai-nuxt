@@ -1,4 +1,4 @@
-import { expect, test } from 'vitest';
+import { expect, test, beforeAll, afterAll } from 'vitest';
 import { initDB, closeDB } from '../../../server/database/database.js';
 
 let dbConnection;

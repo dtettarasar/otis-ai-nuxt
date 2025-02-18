@@ -6,9 +6,9 @@ export default defineVitestConfig({
     setupFiles: './setup-test.js', // Charge les variables d'env avant les tests
     globals: true, // Support pour les globales comme `describe`, `it`, etc.
     include: ['tests/**/*.{test,spec}.{js,ts}'], // Localisation des tests
-    environmentMatchGlobs: [
-      ['tests/unit/backend/**', 'node'],  // Tests backend en mode Node.js
-      ['tests/unit/frontend/**', 'jsdom'], // Tests frontend en mode jsdom
+    workspace: [
+      './vitest.config.backend.ts',
+      './vitest.config.frontend.ts',
     ],
     coverage: {
       provider: 'v8', // Collecteur de couverture
