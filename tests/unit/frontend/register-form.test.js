@@ -4,6 +4,16 @@ import registerForm from '../../../components/forms/register-form.vue';
 
 describe('register-form.vue', () => {
 
+    it('mount without issue', () => {
+
+      console.log('init test: mount without issue');
+
+      const wrapper = mount(registerForm);
+
+      expect(wrapper.exists()).toBe(true);
+
+    });
+    
     describe('username validation', () => {
 
         it('should be not valid if the field is empty', async () => {
@@ -133,6 +143,3 @@ describe('register-form.vue', () => {
       });
 
 });
-
-
-  
