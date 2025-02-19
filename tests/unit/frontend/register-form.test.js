@@ -104,6 +104,28 @@ describe('register-form.vue', () => {
 
         });
 
+        it('should be valid if password is repeated correctly', async () => {
+
+          
+          const wrapper = mount(registerForm);
+          wrapper.vm.user.pwd = "Test78!!"; 
+          wrapper.vm.user.pwdRepeat = "Test78!!"; 
+          
+          expect(wrapper.vm.passwordsMatch).toBe(true);
+
+
+        });
+
+        it('should be not valid if password is not repeated correctly', async () => {
+
+          const wrapper = mount(registerForm);
+          wrapper.vm.user.pwd = "Test78!!"; 
+          wrapper.vm.user.pwdRepeat = "notTheSamePwd";
+          
+          expect(wrapper.vm.passwordsMatch).toBe(false);
+
+        });
+
         it('should be valid if a correct password is provided in the user data', async () => {
 
           const wrapper = mount(registerForm);
