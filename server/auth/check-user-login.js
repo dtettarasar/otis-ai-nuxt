@@ -18,14 +18,14 @@ const checkUserLogin = async (usernameToCheck, passwordToCheck) => {
     const usernameInDB = await findUserByName(usernameToCheck);
     // console.log(usernameInDB);
 
-    if (usernameInDB.length === 0) {
+    if (!usernameInDB) {
 
         console.log('Error: invalid username');
 
     } else {
 
         console.log('User exist in DB');
-        const userToCheckAuth = usernameInDB[0];
+        const userToCheckAuth = usernameInDB;
         console.log(userToCheckAuth);
 
         const hashObj = await getUserPsw(userToCheckAuth._id);
