@@ -81,7 +81,7 @@ onMounted(() => {
                 <label class="form-label" for="psw"><i class="bi bi-key-fill"></i> <b>Password</b></label>
                 <div class="input-group">
                     <input :type="showPassword ? 'text' : 'password'" v-model="user.pwd" class="form-control" placeholder="Enter Password" name="pwd" id="pwd" required>
-                    <button id="toggle-pwd-visible" @click="togglePassword" class="btn btn-outline-secondary" type="button">
+                    <button @click="togglePassword" class="btn btn-outline-secondary" type="button">
                         <i v-if="!showPassword" class="bi bi-eye-fill"></i>
                         <i v-else class="bi bi-eye-slash-fill"></i>
                     </button>

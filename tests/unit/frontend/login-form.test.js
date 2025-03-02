@@ -38,7 +38,7 @@ describe('login-form.vue', () => {
 
         const wrapper = mount(loginForm);
 
-        const toggleBtn = wrapper.find('#toggle-pwd-visible');
+        const toggleBtn = wrapper.find('button');
         expect(toggleBtn.exists()).toBe(true);
 
         expect(wrapper.vm.showPassword).toBe(false);
