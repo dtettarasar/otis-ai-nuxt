@@ -34,4 +34,21 @@ describe('login-form.vue', () => {
 
     });
 
+    it('update password visibility correctly', async () => {
+
+        const wrapper = mount(loginForm);
+
+        const toggleBtn = wrapper.find('#toggle-pwd-visible');
+        expect(toggleBtn.exists()).toBe(true);
+
+        expect(wrapper.vm.showPassword).toBe(false);
+
+        await toggleBtn.trigger('click');
+        expect(wrapper.vm.showPassword).toBe(true);
+
+        await toggleBtn.trigger('click');
+        expect(wrapper.vm.showPassword).toBe(false);
+
+    });
+
 });
