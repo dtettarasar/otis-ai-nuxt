@@ -50,5 +50,46 @@ describe('login-form.vue', () => {
         expect(wrapper.vm.showPassword).toBe(false);
 
     });
+    
+    it('shows error message when authentication fails (with promise rejection)', async () => {
+        vi.stubGlobal('$fetch', vi.fn(() => Promise.reject(new Error('Auth failed'))));
+
+        const wrapper = mount(loginForm);
+        await wrapper.find('form').trigger('submit');
+
+        await new Promise(resolve => setTimeout(resolve, 100)); // Attendre la mise à jour du DOM
+
+        expect(wrapper.vm.showError).toBe(true);
+        expect(wrapper.find('.alert-danger').exists()).toBe(true);
+    });
+
+    it('shows error message when authentication fails (with backend feedback)', async () => {
+        
+        vi.stubGlobal('$fetch', vi.fn(() =>
+            Promise.resolve({ userAuthObj: { authSuccess: false } })
+        ));
+
+        const wrapper = mount(loginForm);
+        await wrapper.find('form').trigger('submit');
+
+        await new Promise(resolve => setTimeout(resolve, 100)); // Attendre la mise à jour du DOM
+
+        expect(wrapper.vm.showError).toBe(true);
+        expect(wrapper.find('.alert-danger').exists()).toBe(true);
+    });
+
+    it('shows success message when authentication succeeds', async () => {
+        vi.stubGlobal('$fetch', vi.fn(() =>
+            Promise.resolve({ userAuthObj: { authSuccess: true } })
+        ));
+
+        const wrapper = mount(loginForm);
+        await wrapper.find('form').trigger('submit');
+
+        await new Promise(resolve => setTimeout(resolve, 100));
+
+        expect(wrapper.vm.showSuccess).toBe(true);
+        expect(wrapper.find('.alert-success').exists()).toBe(true);
+    });
 
 });
