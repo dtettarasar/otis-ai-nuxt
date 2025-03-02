@@ -19,4 +19,19 @@ describe('login-form.vue', () => {
 
     });
 
+    it('update the v-model values when typing in the according fields', async () => {
+
+        const wrapper = mount(loginForm);
+        
+        const usernameInput = wrapper.find('input[name="username"]');
+        await usernameInput.setValue('testUser');
+
+        const passwordInput = wrapper.find('input[name="pwd"]');
+        await passwordInput.setValue('testPwd123!!');
+
+        expect(wrapper.vm.user.name).toBe('testUser');
+        expect(wrapper.vm.user.pwd).toBe('testPwd123!!');
+
+    });
+
 });
