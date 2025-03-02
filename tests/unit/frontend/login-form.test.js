@@ -11,4 +11,12 @@ describe('login-form.vue', () => {
 
     });
 
+    it('renders the username and password fields correctly', () => {
+
+        const wrapper = mount(loginForm);
+        expect(wrapper.find('input[name="username"]').exists()).toBe(true);
+        expect(wrapper.find('input[name="pwd"]').exists()).toBe(true);
+
+    });
+
 });
