@@ -64,7 +64,6 @@ test('test user creation', async () => {
 
 });
 
-
 test('Check the authSuccess', async () => {
 
     testUsers[0].authResult = await checkUserLogin(testUsers[0].username, testUsers[0].password, encryptionKey);
@@ -75,5 +74,12 @@ test('Check the authSuccess', async () => {
 
     testUsers[2].authResult = await checkUserLogin(testUsers[2].username, testUsers[2].password, encryptionKey);
     await expect(testUsers[2].authResult).toHaveProperty('authSuccess', false);
+
+});
+
+test('Check that users contain the userIdEncryption object', async () => {
+
+    await expect(testUsers[0].authResult).toHaveProperty('userIdEncryption');
+    await expect(testUsers[0].authResult.userIdEncryption).toBeInstanceOf(Object);
 
 });
