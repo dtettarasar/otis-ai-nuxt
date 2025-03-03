@@ -2,9 +2,9 @@ import {findUserByName, getUserPsw} from '../controllers/user-controller';
 import {checkHash} from '../utils/str_hasher';
 import { encryptString } from '../utils/str_encrypter';
 
-const checkUserLogin = async (usernameToCheck, passwordToCheck) => {
+const checkUserLogin = async (usernameToCheck, passwordToCheck, encryptionKey) => {
 
-    const config = useRuntimeConfig();
+    // const config = useRuntimeConfig();
 
     const userLoginData = {
         authSuccess: false,
@@ -44,7 +44,8 @@ const checkUserLogin = async (usernameToCheck, passwordToCheck) => {
             userLoginData.authSuccess = true;
 
             // make an encrypted version of the id that will be passed to the token before its creation
-            userLoginData.userIdEncryption = await encryptString(userToCheckAuth._id.toHexString(), config.encryptionKey);
+            //userLoginData.userIdEncryption = await encryptString(userToCheckAuth._id.toHexString(), config.encryptionKey);
+            userLoginData.userIdEncryption = await encryptString(userToCheckAuth._id.toHexString(), encryptionKey);
 
         }
 

@@ -22,7 +22,7 @@ export default defineEventHandler(async (event) => {
       refreshToken: null
     }
 
-    const userLoginData = await checkUserLogin(body.username, body.password);
+    const userLoginData = await checkUserLogin(body.username, body.password, config.encryptionKey);
     console.log(userLoginData);
 
     if (userLoginData.authSuccess) {

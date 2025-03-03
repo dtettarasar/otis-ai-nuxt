@@ -1,6 +1,15 @@
 import { expect, test, beforeAll, afterAll } from 'vitest';
 import { initDB, closeDB } from '../../../server/database/database.js';
 import { createTestUser, createUser } from '~/server/controllers/user-controller.js';
+import checkUserLogin from '../../../server/auth/check-user-login.js';
+
+console.log('import checkUserLogin');
+console.log(checkUserLogin);
+
+import dotenv from 'dotenv';
+dotenv.config(); // Charger les variables d'environnement
+
+const encryptionKey = process.env.ENCRYPTION_KEY;
 
 let dbConnection;
 
@@ -52,5 +61,13 @@ test('test user creation', async () => {
     await expect(testUsers[2].creationResult).toBe(null);
 
     console.log(testUsers);
+
+});
+
+
+test('Check the authSuccess', async () => {
+
+    testUsers[0].authResult = await checkUserLogin(testUsers[0].username, testUsers[0].password, encryptionKey);
+    await expect(testUsers[0].authResult).toHaveProperty('authSuccess', true);
 
 });
