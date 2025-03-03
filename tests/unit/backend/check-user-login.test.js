@@ -3,9 +3,6 @@ import { initDB, closeDB } from '../../../server/database/database.js';
 import { createTestUser, createUser } from '~/server/controllers/user-controller.js';
 import checkUserLogin from '../../../server/auth/check-user-login.js';
 
-console.log('import checkUserLogin');
-console.log(checkUserLogin);
-
 import dotenv from 'dotenv';
 dotenv.config(); // Charger les variables d'environnement
 
@@ -83,3 +80,21 @@ test('Check that users contain the userIdEncryption object', async () => {
     await expect(testUsers[0].authResult.userIdEncryption).toBeInstanceOf(Object);
 
 });
+
+test('Check that the userIdEncryption object has the iv & encryptedStr properties (for the the user successfully logged in)', async () => {
+
+    await expect(testUsers[0].authResult.userIdEncryption).toHaveProperty('iv');
+    await expect(testUsers[0].authResult.userIdEncryption).toHaveProperty('encryptedStr');
+
+});
+
+test('check the iv and encryptedStr format', async () => {
+
+    // Regex to check encryptedStr & iv formats
+    const ivRegex = /^[a-f0-9]{32}$/;
+    const encryptedStrRegex = /^[a-f0-9]{64}$/;
+
+    await expect(testUsers[0].authResult.userIdEncryption.iv).toMatch(ivRegex);
+    await expect(testUsers[0].authResult.userIdEncryption.encryptedStr).toMatch(encryptedStrRegex);
+
+}); 
