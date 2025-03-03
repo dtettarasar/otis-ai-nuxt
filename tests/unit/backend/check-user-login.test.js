@@ -70,4 +70,10 @@ test('Check the authSuccess', async () => {
     testUsers[0].authResult = await checkUserLogin(testUsers[0].username, testUsers[0].password, encryptionKey);
     await expect(testUsers[0].authResult).toHaveProperty('authSuccess', true);
 
+    testUsers[1].authResult = await checkUserLogin(testUsers[1].username, 'didou&dede', encryptionKey);
+    await expect(testUsers[1].authResult).toHaveProperty('authSuccess', false);
+
+    testUsers[2].authResult = await checkUserLogin(testUsers[2].username, testUsers[2].password, encryptionKey);
+    await expect(testUsers[2].authResult).toHaveProperty('authSuccess', false);
+
 });
