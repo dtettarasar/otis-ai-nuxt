@@ -59,10 +59,20 @@ test('test user creation', async () => {
 
     await testUserCreation(testUsers);
 
+    const createdUserId = [0, 1, 2, 3];
+
+    for (let i = 0; i < createdUserId.length; i++ ) {
+
+        await expect(testUsers[createdUserId[i]].creationResult.creationStatus).toBe(true);
+
+    }
+
+    /*
     await expect(testUsers[0].creationResult.creationStatus).toBe(true);
     await expect(testUsers[1].creationResult.creationStatus).toBe(true);
     await expect(testUsers[2].creationResult.creationStatus).toBe(true);
     await expect(testUsers[3].creationResult.creationStatus).toBe(true);
+    */
     await expect(testUsers[4].creationResult).toBe(null);
 
     console.log(testUsers);
