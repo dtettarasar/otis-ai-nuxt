@@ -1,6 +1,7 @@
 import { expect, test, beforeAll, afterAll } from 'vitest';
 import { initDB, closeDB } from '../../../server/database/database.js';
 import { createTestUser, createUser } from '~/server/controllers/user-controller.js';
+
 import checkUserLogin from '~/server/auth/check-user-login.js';
 import createToken from '~/server/auth/token-service.js';
 
@@ -73,6 +74,12 @@ test('Check the authSuccess', async () => {
 
     testUsers[1].authResult = await checkUserLogin(testUsers[1].username, 'didou&dede', encryptionKey);
     await expect(testUsers[1].authResult).toHaveProperty('authSuccess', false);
+
+    testUsers[2].authResult = await checkUserLogin(testUsers[2].username, testUsers[2].password, encryptionKey);
+    await expect(testUsers[2].authResult).toHaveProperty('authSuccess', true);
+
+    testUsers[3].authResult = await checkUserLogin(testUsers[3].username, testUsers[3].password, encryptionKey);
+    await expect(testUsers[3].authResult).toHaveProperty('authSuccess', true);
 
     testUsers[4].authResult = await checkUserLogin(testUsers[4].username, testUsers[4].password, encryptionKey);
     await expect(testUsers[4].authResult).toHaveProperty('authSuccess', false);
