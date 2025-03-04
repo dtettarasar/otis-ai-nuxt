@@ -1,7 +1,8 @@
 import { expect, test, beforeAll, afterAll } from 'vitest';
 import { initDB, closeDB } from '../../../server/database/database.js';
 import { createTestUser, createUser } from '~/server/controllers/user-controller.js';
-import checkUserLogin from '../../../server/auth/check-user-login.js';
+import checkUserLogin from '~/server/auth/check-user-login.js';
+import createToken from '~/server/auth/token-service.js';
 
 import dotenv from 'dotenv';
 dotenv.config(); // Charger les variables d'environnement
@@ -26,6 +27,8 @@ const buildTestUsers = () => {
     // testUsers.push(createTestUser('user with correct parameters','DummyTestman', 'dummy.testman', '@otis-ai-test.eu', 'Test001!'));
     testUsers.push(createTestUser('user with correct parameters','DummyTestlady', 'dummy.testlady', '@otis-ai-test.eu', 'Test001!'));
     testUsers.push(createTestUser("user with correct parameters, for this one we'll test login with wrong password", "Pilou", "king.pilou", '@otis-ai-test.eu', 'Test001!'));
+    testUsers.push(createTestUser("user with correct parameters, created to test failed token creation and auth token (no jwt will be provided)", "CafeTheGuineaPig", "cafe.guinea.pig", '@otis-ai-test.eu', 'Test001!'));
+    testUsers.push(createTestUser("user with correct parameters, created to test failed auth token (with invalid key)", "CracotteTheGuineaPig", "cracotte.guinea.pig", '@otis-ai-test.eu', 'Test001!'));
     testUsers.push(createTestUser("user that won't be created in the database", "Natty", "queen.natty", '@otis-ai-test.eu', 'Test001!'));
 
     return testUsers;
@@ -55,7 +58,9 @@ test('test user creation', async () => {
 
     await expect(testUsers[0].creationResult.creationStatus).toBe(true);
     await expect(testUsers[1].creationResult.creationStatus).toBe(true);
-    await expect(testUsers[2].creationResult).toBe(null);
+    await expect(testUsers[2].creationResult.creationStatus).toBe(true);
+    await expect(testUsers[3].creationResult.creationStatus).toBe(true);
+    await expect(testUsers[4].creationResult).toBe(null);
 
     console.log(testUsers);
 
@@ -69,8 +74,8 @@ test('Check the authSuccess', async () => {
     testUsers[1].authResult = await checkUserLogin(testUsers[1].username, 'didou&dede', encryptionKey);
     await expect(testUsers[1].authResult).toHaveProperty('authSuccess', false);
 
-    testUsers[2].authResult = await checkUserLogin(testUsers[2].username, testUsers[2].password, encryptionKey);
-    await expect(testUsers[2].authResult).toHaveProperty('authSuccess', false);
+    testUsers[4].authResult = await checkUserLogin(testUsers[4].username, testUsers[4].password, encryptionKey);
+    await expect(testUsers[4].authResult).toHaveProperty('authSuccess', false);
 
 });
 
