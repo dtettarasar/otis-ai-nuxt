@@ -38,13 +38,15 @@ const buildTestUsers = () => {
 
 const testUserCreation = async (testUsersArray) => {
 
+    // This array store all the index for the users that should be created, to exclude the last one
+    const createdUserId = [0, 1, 2, 3];
+
     //console.log(testUsersArray);
-    for (let i = 0; i < testUsersArray.length - 1; i++ ) {
+    for (let i = 0; i < createdUserId.length; i++ ) {
 
         // await console.log(testUsersArray[i]);
-        // i < testUsersArray.length - 1 : adjust the condition to keep the last test user not created in the database
-        const test = await createUser(testUsersArray[i].username, testUsersArray[i].email, testUsersArray[i].password);
-        testUsersArray[i].creationResult = test;
+        const test = await createUser(testUsersArray[createdUserId[i]].username, testUsersArray[createdUserId[i]].email, testUsersArray[createdUserId[i]].password);
+        testUsersArray[createdUserId[i]].creationResult = test;
         // await console.log(testUsersArray[i]);
 
     }
