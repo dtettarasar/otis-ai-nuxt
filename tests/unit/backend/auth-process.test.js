@@ -130,11 +130,16 @@ test('check the iv and encryptedStr format', async () => {
 test("test create token module", async () => {
 
     testUsers[0].tokenResult = await createToken(testUsers[0].authResult, accessTokenSecret, accessTokenExpiration);
+    testUsers[2].tokenResult = await createToken(testUsers[2].authResult, false, accessTokenExpiration);
     testUsers[3].tokenResult = await createToken(testUsers[3].authResult, accessTokenSecret, accessTokenExpiration);
 
     // check that testUsers[0].tokenResult contains a proper token
     await expect(typeof testUsers[0].tokenResult).toBe('string');
     await expect(typeof testUsers[3].tokenResult).toBe('string');
+
+    // check that testUsers[2].tokenResult is a bool and false;
+    await expect(typeof testUsers[2].tokenResult).toBe('boolean');
+    await expect(testUsers[2].tokenResult).toBe(false);
 
     // check that userCont[0] & userCont[4] contains a token with proper format
     const jwtRegex = /^[A-Za-z0-9-_]+\.[A-Za-z0-9-_]+\.[A-Za-z0-9-_]+$/;
