@@ -3,12 +3,16 @@ import { initDB, closeDB } from '../../../server/database/database.js';
 import { createTestUser, createUser } from '~/server/controllers/user-controller.js';
 
 import checkUserLogin from '~/server/auth/check-user-login.js';
-import createToken from '~/server/auth/token-service.js';
+import { createToken } from '~/server/auth/token-service.js';
 
 import dotenv from 'dotenv';
 dotenv.config(); // Charger les variables d'environnement
 
 const encryptionKey = process.env.ENCRYPTION_KEY;
+const accessTokenSecret = process.env.ACCESS_TOKEN_SECRET;
+const accessTokenExpiration = process.env.ACCESS_TOKEN_EXP;
+const refreshTokenSecret = process.env.REFRESH_TOKEN_SECRET;
+const refreshTokenExpiration = process.env.REFRESH_TOKEN_EXP;
 
 let dbConnection;
 
@@ -121,4 +125,13 @@ test('check the iv and encryptedStr format', async () => {
     await expect(testUsers[0].authResult.userIdEncryption.iv).toMatch(ivRegex);
     await expect(testUsers[0].authResult.userIdEncryption.encryptedStr).toMatch(encryptedStrRegex);
 
-}); 
+});
+
+test("test create token module", async () => {
+
+    testUsers[0].tokenResult = await createToken(testUsers[0].authResult, accessTokenSecret, accessTokenExpiration);
+
+    // check that userCont[0].tokenResult contains a proper token
+    await expect(typeof testUsers[0].tokenResult).toBe('string');
+
+});
